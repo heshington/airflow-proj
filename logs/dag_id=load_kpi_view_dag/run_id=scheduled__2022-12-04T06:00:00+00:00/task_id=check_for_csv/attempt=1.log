@@ -1,0 +1,26 @@
+[2022-12-04T20:01:56.652+1300] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: load_kpi_view_dag.check_for_csv scheduled__2022-12-04T06:00:00+00:00 [queued]>
+[2022-12-04T20:01:56.667+1300] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: load_kpi_view_dag.check_for_csv scheduled__2022-12-04T06:00:00+00:00 [queued]>
+[2022-12-04T20:01:56.668+1300] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-04T20:01:56.668+1300] {taskinstance.py:1363} INFO - Starting attempt 1 of 1
+[2022-12-04T20:01:56.669+1300] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-04T20:01:56.683+1300] {taskinstance.py:1383} INFO - Executing <Task(ShortCircuitOperator): check_for_csv> on 2022-12-04 06:00:00+00:00
+[2022-12-04T20:01:56.699+1300] {standard_task_runner.py:55} INFO - Started process 92327 to run task
+[2022-12-04T20:01:56.704+1300] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'load_kpi_view_dag', 'check_for_csv', 'scheduled__2022-12-04T06:00:00+00:00', '--job-id', '341', '--raw', '--subdir', 'DAGS_FOLDER/load_kpi_view.py', '--cfg-path', '/var/folders/xc/5xlsywvn2n5d0_ty56lp12y80000gp/T/tmpltjaqo5c']
+[2022-12-04T20:01:56.706+1300] {standard_task_runner.py:83} INFO - Job 341: Subtask check_for_csv
+[2022-12-04T20:01:56.907+1300] {task_command.py:376} INFO - Running <TaskInstance: load_kpi_view_dag.check_for_csv scheduled__2022-12-04T06:00:00+00:00 [running]> on host macbook-pro
+[2022-12-04T20:01:57.030+1300] {taskinstance.py:1590} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=load_kpi_view_dag
+AIRFLOW_CTX_TASK_ID=check_for_csv
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-04T06:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-04T06:00:00+00:00
+[2022-12-04T20:01:57.031+1300] {python.py:177} INFO - Done. Returned value was: False
+[2022-12-04T20:01:57.031+1300] {python.py:263} INFO - Condition result is False
+[2022-12-04T20:01:57.031+1300] {python.py:277} INFO - Skipping all downstream tasks...
+[2022-12-04T20:01:57.078+1300] {python.py:285} INFO - Done.
+[2022-12-04T20:01:57.099+1300] {taskinstance.py:1401} INFO - Marking task as SUCCESS. dag_id=load_kpi_view_dag, task_id=check_for_csv, execution_date=20221204T060000, start_date=20221204T070156, end_date=20221204T070157
+[2022-12-04T20:01:57.142+1300] {local_task_job.py:164} INFO - Task exited with return code 0
+[2022-12-04T20:01:57.227+1300] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

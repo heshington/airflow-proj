@@ -1,0 +1,57 @@
+[2022-12-01T11:03:00.066+1300] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: load_kpi_view_dag.truncate_loading_table scheduled__2022-11-30T21:00:00+00:00 [queued]>
+[2022-12-01T11:03:00.099+1300] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: load_kpi_view_dag.truncate_loading_table scheduled__2022-11-30T21:00:00+00:00 [queued]>
+[2022-12-01T11:03:00.100+1300] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-01T11:03:00.102+1300] {taskinstance.py:1363} INFO - Starting attempt 1 of 1
+[2022-12-01T11:03:00.102+1300] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-01T11:03:00.179+1300] {taskinstance.py:1383} INFO - Executing <Task(PostgresOperator): truncate_loading_table> on 2022-11-30 21:00:00+00:00
+[2022-12-01T11:03:00.198+1300] {standard_task_runner.py:55} INFO - Started process 4721 to run task
+[2022-12-01T11:03:00.205+1300] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'load_kpi_view_dag', 'truncate_loading_table', 'scheduled__2022-11-30T21:00:00+00:00', '--job-id', '208', '--raw', '--subdir', 'DAGS_FOLDER/load_kpi_view.py', '--cfg-path', '/var/folders/xc/5xlsywvn2n5d0_ty56lp12y80000gp/T/tmpthdn7zn0']
+[2022-12-01T11:03:00.207+1300] {standard_task_runner.py:83} INFO - Job 208: Subtask truncate_loading_table
+[2022-12-01T11:03:00.342+1300] {task_command.py:376} INFO - Running <TaskInstance: load_kpi_view_dag.truncate_loading_table scheduled__2022-11-30T21:00:00+00:00 [running]> on host macbook-pro.hq.optimalbi.site
+[2022-12-01T11:03:00.443+1300] {taskinstance.py:1590} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=load_kpi_view_dag
+AIRFLOW_CTX_TASK_ID=truncate_loading_table
+AIRFLOW_CTX_EXECUTION_DATE=2022-11-30T21:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-11-30T21:00:00+00:00
+[2022-12-01T11:03:00.461+1300] {base.py:71} INFO - Using connection ID 'postgres_db' for task execution.
+[2022-12-01T11:03:00.473+1300] {sql.py:315} INFO - Running statement: 
+
+CREATE TABLE IF NOT EXISTS logs.landing_table (
+    site character(50),
+    start_timestamp timestamp without time zone,
+    end_timestamp timestamp without time zone,
+    id integer NOT NULL
+);
+ALTER TABLE logs.landing_table OWNER TO admin;
+
+--
+-- TOC entry 220 (class 1259 OID 32904)
+-- Name: landing_table_id_seq; Type: SEQUENCE; Schema: logs; Owner: admin
+--
+
+CREATE SEQUENCE IF NOT EXISTS logs.landing_table_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+-- Empty out the table before copying from csv.
+TRUNCATE LOGS.landing_table;
+    
+
+
+
+, parameters: None
+[2022-12-01T11:03:00.494+1300] {postgres.py:96} INFO - NOTICE:  relation "landing_table" already exists, skipping
+
+[2022-12-01T11:03:00.494+1300] {postgres.py:96} INFO - NOTICE:  relation "landing_table_id_seq" already exists, skipping
+
+[2022-12-01T11:03:00.517+1300] {taskinstance.py:1401} INFO - Marking task as SUCCESS. dag_id=load_kpi_view_dag, task_id=truncate_loading_table, execution_date=20221130T210000, start_date=20221130T220300, end_date=20221130T220300
+[2022-12-01T11:03:00.568+1300] {local_task_job.py:164} INFO - Task exited with return code 0
+[2022-12-01T11:03:00.625+1300] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

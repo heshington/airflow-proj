@@ -1,0 +1,27 @@
+[2022-11-24T15:57:03.387+1300] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: load_kpi_view_dag.move_csvs manual__2022-11-24T02:56:55.914316+00:00 [queued]>
+[2022-11-24T15:57:03.400+1300] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: load_kpi_view_dag.move_csvs manual__2022-11-24T02:56:55.914316+00:00 [queued]>
+[2022-11-24T15:57:03.400+1300] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-11-24T15:57:03.400+1300] {taskinstance.py:1363} INFO - Starting attempt 1 of 1
+[2022-11-24T15:57:03.400+1300] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-11-24T15:57:03.415+1300] {taskinstance.py:1383} INFO - Executing <Task(BashOperator): move_csvs> on 2022-11-24 02:56:55.914316+00:00
+[2022-11-24T15:57:03.427+1300] {standard_task_runner.py:55} INFO - Started process 970 to run task
+[2022-11-24T15:57:03.434+1300] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'load_kpi_view_dag', 'move_csvs', 'manual__2022-11-24T02:56:55.914316+00:00', '--job-id', '65', '--raw', '--subdir', 'DAGS_FOLDER/load_kpi_view.py', '--cfg-path', '/var/folders/xc/5xlsywvn2n5d0_ty56lp12y80000gp/T/tmpt3zhfxcx']
+[2022-11-24T15:57:03.437+1300] {standard_task_runner.py:83} INFO - Job 65: Subtask move_csvs
+[2022-11-24T15:57:03.609+1300] {task_command.py:376} INFO - Running <TaskInstance: load_kpi_view_dag.move_csvs manual__2022-11-24T02:56:55.914316+00:00 [running]> on host macbook-pro.hq.optimalbi.site
+[2022-11-24T15:57:03.672+1300] {taskinstance.py:1590} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=load_kpi_view_dag
+AIRFLOW_CTX_TASK_ID=move_csvs
+AIRFLOW_CTX_EXECUTION_DATE=2022-11-24T02:56:55.914316+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-11-24T02:56:55.914316+00:00
+[2022-11-24T15:57:03.673+1300] {subprocess.py:63} INFO - Tmp dir root location: 
+ /var/folders/xc/5xlsywvn2n5d0_ty56lp12y80000gp/T
+[2022-11-24T15:57:03.674+1300] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'mv /Users/hirenpatel/airflow/csv_batch_files/*.csv /Users/hirenpatel/airflow/csv_processed/']
+[2022-11-24T15:57:03.684+1300] {subprocess.py:86} INFO - Output:
+[2022-11-24T15:57:03.706+1300] {subprocess.py:97} INFO - Command exited with return code 0
+[2022-11-24T15:57:03.752+1300] {taskinstance.py:1401} INFO - Marking task as SUCCESS. dag_id=load_kpi_view_dag, task_id=move_csvs, execution_date=20221124T025655, start_date=20221124T025703, end_date=20221124T025703
+[2022-11-24T15:57:03.807+1300] {local_task_job.py:164} INFO - Task exited with return code 0
+[2022-11-24T15:57:03.888+1300] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

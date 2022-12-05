@@ -1,0 +1,38 @@
+[2022-12-05T09:51:29.889+1300] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: load_kpi_view_dag.update_agg_table manual__2022-12-04T20:51:16.771984+00:00 [queued]>
+[2022-12-05T09:51:29.903+1300] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: load_kpi_view_dag.update_agg_table manual__2022-12-04T20:51:16.771984+00:00 [queued]>
+[2022-12-05T09:51:29.903+1300] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-05T09:51:29.904+1300] {taskinstance.py:1363} INFO - Starting attempt 1 of 1
+[2022-12-05T09:51:29.904+1300] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-05T09:51:29.915+1300] {taskinstance.py:1383} INFO - Executing <Task(PostgresOperator): update_agg_table> on 2022-12-04 20:51:16.771984+00:00
+[2022-12-05T09:51:29.922+1300] {standard_task_runner.py:55} INFO - Started process 4851 to run task
+[2022-12-05T09:51:29.927+1300] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'load_kpi_view_dag', 'update_agg_table', 'manual__2022-12-04T20:51:16.771984+00:00', '--job-id', '375', '--raw', '--subdir', 'DAGS_FOLDER/load_kpi_view.py', '--cfg-path', '/var/folders/xc/5xlsywvn2n5d0_ty56lp12y80000gp/T/tmpmqsde2fm']
+[2022-12-05T09:51:29.929+1300] {standard_task_runner.py:83} INFO - Job 375: Subtask update_agg_table
+[2022-12-05T09:51:30.079+1300] {task_command.py:376} INFO - Running <TaskInstance: load_kpi_view_dag.update_agg_table manual__2022-12-04T20:51:16.771984+00:00 [running]> on host macbook-pro
+[2022-12-05T09:51:30.134+1300] {taskinstance.py:1590} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=load_kpi_view_dag
+AIRFLOW_CTX_TASK_ID=update_agg_table
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-04T20:51:16.771984+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-12-04T20:51:16.771984+00:00
+[2022-12-05T09:51:30.143+1300] {base.py:71} INFO - Using connection ID 'postgres_db' for task execution.
+[2022-12-05T09:51:30.149+1300] {sql.py:315} INFO - Running statement: 
+--Clear out the table
+truncate logs.aggregation_table_new;
+ --aggregation_view
+
+insert into logs.aggregation_table_new
+SELECT l.id,
+        l.site,
+        EXTRACT(year FROM l.start_timestamp) AS "Year",
+        EXTRACT(month FROM l.start_timestamp) AS "Month",
+        sum(EXTRACT(epoch FROM (l.end_timestamp - l.start_timestamp) / 60::double precision))::bigint AS outage_in_minutes
+        FROM logs.all_sites l
+        GROUP BY l.site, (EXTRACT(year FROM l.start_timestamp)), (EXTRACT(month FROM l.start_timestamp)), l.id
+       , parameters: None
+[2022-12-05T09:51:30.155+1300] {sql.py:324} INFO - Rows affected: 400
+[2022-12-05T09:51:30.167+1300] {taskinstance.py:1401} INFO - Marking task as SUCCESS. dag_id=load_kpi_view_dag, task_id=update_agg_table, execution_date=20221204T205116, start_date=20221204T205129, end_date=20221204T205130
+[2022-12-05T09:51:30.214+1300] {local_task_job.py:164} INFO - Task exited with return code 0
+[2022-12-05T09:51:30.288+1300] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

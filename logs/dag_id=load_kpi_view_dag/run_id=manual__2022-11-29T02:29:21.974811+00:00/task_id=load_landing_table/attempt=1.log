@@ -1,0 +1,42 @@
+[2022-11-29T15:29:28.316+1300] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: load_kpi_view_dag.load_landing_table manual__2022-11-29T02:29:21.974811+00:00 [queued]>
+[2022-11-29T15:29:28.329+1300] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: load_kpi_view_dag.load_landing_table manual__2022-11-29T02:29:21.974811+00:00 [queued]>
+[2022-11-29T15:29:28.329+1300] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-11-29T15:29:28.330+1300] {taskinstance.py:1363} INFO - Starting attempt 1 of 1
+[2022-11-29T15:29:28.330+1300] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-11-29T15:29:28.342+1300] {taskinstance.py:1383} INFO - Executing <Task(PostgresOperator): load_landing_table> on 2022-11-29 02:29:21.974811+00:00
+[2022-11-29T15:29:28.349+1300] {standard_task_runner.py:55} INFO - Started process 3159 to run task
+[2022-11-29T15:29:28.354+1300] {standard_task_runner.py:82} INFO - Running: ['airflow', 'tasks', 'run', 'load_kpi_view_dag', 'load_landing_table', 'manual__2022-11-29T02:29:21.974811+00:00', '--job-id', '124', '--raw', '--subdir', 'DAGS_FOLDER/load_kpi_view.py', '--cfg-path', '/var/folders/xc/5xlsywvn2n5d0_ty56lp12y80000gp/T/tmpjzha7yc4']
+[2022-11-29T15:29:28.356+1300] {standard_task_runner.py:83} INFO - Job 124: Subtask load_landing_table
+[2022-11-29T15:29:28.514+1300] {task_command.py:376} INFO - Running <TaskInstance: load_kpi_view_dag.load_landing_table manual__2022-11-29T02:29:21.974811+00:00 [running]> on host macbook-pro.hq.optimalbi.site
+[2022-11-29T15:29:28.593+1300] {taskinstance.py:1590} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=airflow
+AIRFLOW_CTX_DAG_ID=load_kpi_view_dag
+AIRFLOW_CTX_TASK_ID=load_landing_table
+AIRFLOW_CTX_EXECUTION_DATE=2022-11-29T02:29:21.974811+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-11-29T02:29:21.974811+00:00
+[2022-11-29T15:29:28.607+1300] {base.py:71} INFO - Using connection ID 'postgres_db' for task execution.
+[2022-11-29T15:29:28.617+1300] {sql.py:315} INFO - Running statement: do $$
+<<first_block>>
+
+DECLARE x varchar(500);
+BEGIN
+  --FOREACH x IN ARRAY array[['/Users/hirenpatel/airflow/csv_batch_files/task_1_logs_batch_2.csv'], ['/Users/hirenpatel/airflow/csv_batch_files/task_1_logs_batch_3.csv'], ['/Users/hirenpatel/airflow/csv_batch_files/task_1_logs_batch_1.csv']]
+  FOREACH x IN ARRAY array[['/Users/hirenpatel/airflow/csv_batch_files/task_1_logs_batch_2.csv']]
+  LOOP
+    RAISE NOTICE 'row = %', x;
+        execute format(
+                    'COPY logs.landing_table("site", "start_timestamp", "end_timestamp")
+                    FROM '''||x||'''
+                    DELIMITER '',''
+                    CSV HEADER'
+        );
+  END LOOP;
+END  first_block $$;, parameters: None
+[2022-11-29T15:29:28.640+1300] {postgres.py:96} INFO - NOTICE:  row = /Users/hirenpatel/airflow/csv_batch_files/task_1_logs_batch_2.csv
+
+[2022-11-29T15:29:28.658+1300] {taskinstance.py:1401} INFO - Marking task as SUCCESS. dag_id=load_kpi_view_dag, task_id=load_landing_table, execution_date=20221129T022921, start_date=20221129T022928, end_date=20221129T022928
+[2022-11-29T15:29:28.683+1300] {local_task_job.py:164} INFO - Task exited with return code 0
+[2022-11-29T15:29:28.779+1300] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check
